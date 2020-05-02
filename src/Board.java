@@ -21,17 +21,18 @@ public class Board extends GridPane {
 
     /**
      * This method is responsible for initiating the contents of the board.
+     *
      * @param children the children of the parent display object.
      */
     private void setupBoard(ObservableList<Node> children) {
-        for(int i =0;i<10;i++) {
+        for (int i = 0; i < 10; i++) {
             addRow(i);
             addColumn(i);
         }
-        for (int r=0;r<10;r++) {
-            for (int c=0;c<10;c++) {
+        for (int r = 0; r < 10; r++) {
+            for (int c = 0; c < 10; c++) {
                 cells[r][c] = new Cell();
-                add(cells[r][c],r,c);
+                add(cells[r][c], r, c);
             }
         }
         children.add(this);
@@ -39,6 +40,7 @@ public class Board extends GridPane {
 
     /**
      * The constructor
+     *
      * @param children the children of the parent display object.
      */
     public Board(ObservableList<Node> children) {

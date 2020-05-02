@@ -34,7 +34,7 @@ public class Ship {
     /**
      * An enum showing which way the ship is facing.
      */
-    private enum Face{
+    private enum Face {
         HORIZONTAL, VERTICAL
     }
 
@@ -45,12 +45,13 @@ public class Ship {
 
     /**
      * The constructor.
-     * @param length is the length of the ship.
+     *
+     * @param length   is the length of the ship.
      * @param children is the children of the parent class.
      */
-    public Ship(int length, ObservableList<Node> children){
+    public Ship(int length, ObservableList<Node> children) {
         this(length);
-        ship.setFitWidth(35*length);
+        ship.setFitWidth(35 * length);
         shouldFollow = false;
         children.add(ship);
         face = Face.HORIZONTAL;
@@ -58,7 +59,7 @@ public class Ship {
             @Override
             public void handle(long now) {
                 if (shouldFollow) {
-                    relocateAccordingly(GameStage.getMouseX(),GameStage.getMouseY());
+                    relocateAccordingly(GameStage.getMouseX(), GameStage.getMouseY());
                 }
                 if (face == Face.VERTICAL) {
                     ship.setRotate(90);
@@ -71,6 +72,7 @@ public class Ship {
 
     /**
      * Getter of the facing orientation
+     *
      * @return the indicated object.
      */
     public Face getFace() {
@@ -79,6 +81,7 @@ public class Ship {
 
     /**
      * Setter of the face in case it needs to be changed.
+     *
      * @param face the facing orientation.
      */
     public void setFace(Face face) {
@@ -89,6 +92,7 @@ public class Ship {
      * The constructor.
      * <strong>Important:</strong>
      * This constructor is mainly responsible for the opponent's board which should not be shown.
+     *
      * @param length the length of the ship.
      */
     public Ship(int length) {
@@ -102,9 +106,9 @@ public class Ship {
         ship.setOnMousePressed(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                if (event.getButton()==MouseButton.PRIMARY) {
+                if (event.getButton() == MouseButton.PRIMARY) {
                     shouldFollow = true;
-                }else shouldFollow = false;
+                } else shouldFollow = false;
             }
         });
 
@@ -112,26 +116,29 @@ public class Ship {
 
     /**
      * This method relocates the ship to the center of the given x and y position.
+     *
      * @param x is the x position.
      * @param y is the y position.
      */
     private void relocateAccordingly(double x, double y) {
         if (face == Face.VERTICAL) {
-            ship.relocate(x-(ship.getFitWidth()/2),y);
-        } else ship.relocate(x-ship.getFitWidth()/2,y-ship.getFitHeight()/2);
+            ship.relocate(x - (ship.getFitWidth() / 2), y);
+        } else ship.relocate(x - ship.getFitWidth() / 2, y - ship.getFitHeight() / 2);
     }
 
     /**
      * This method relocates the ship to the exact given point.
+     *
      * @param x is the x position.
      * @param y is the y position.
      */
     public void relocateShip(double x, double y) {
-        ship.relocate(x,y);
+        ship.relocate(x, y);
     }
 
     /**
      * The getter of should follow boolean.
+     *
      * @return shouldFollow boolean.
      */
     public boolean isShouldFollow() {
@@ -144,6 +151,6 @@ public class Ship {
     public void rotate() {
         if (face == Face.HORIZONTAL) {
             face = Face.VERTICAL;
-        }else face=Face.HORIZONTAL;
+        } else face = Face.HORIZONTAL;
     }
 }

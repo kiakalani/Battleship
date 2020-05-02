@@ -15,17 +15,18 @@ public class Player {
 
     /**
      * The constructor.
+     *
      * @param children the children of the parent class.
      */
     public Player(ObservableList<Node> children) {
         ships = new Ship[5];
         for (int i = 0; i < 5; i++) {
             if (i == 0) {
-                ships[i] = new Ship(2,children);
+                ships[i] = new Ship(2, children);
             } else if (i < 3) {
-                ships[i] = new Ship(3,children);
-            } else ships[i] = new Ship(i+1,children);
-            ships[i].relocateShip((i*(1024/5))+5,600);
+                ships[i] = new Ship(3, children);
+            } else ships[i] = new Ship(i + 1, children);
+            ships[i].relocateShip((i * (1024 / 5)) + 5, 600);
         }
 
     }
@@ -34,7 +35,7 @@ public class Player {
      * This method rotates the currently selected ship.
      */
     public void rotateShips() {
-        for (int i=0;i<5;i++) {
+        for (int i = 0; i < 5; i++) {
             if (ships[i].isShouldFollow()) {
                 ships[i].rotate();
                 break;

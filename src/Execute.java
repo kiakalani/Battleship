@@ -13,6 +13,7 @@ public class Execute extends Application {
      * A static variable for having flexibility with the stage functionality.
      */
     private static Stage stage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
         stage = primaryStage;
@@ -22,6 +23,7 @@ public class Execute extends Application {
 
     /**
      * A method for changing the display.
+     *
      * @param scene is the scene of the new display.
      */
     public static void changeScene(Scene scene) {
@@ -30,6 +32,7 @@ public class Execute extends Application {
 
     /**
      * The main method
+     *
      * @param args
      */
     public static void main(String[] args) {

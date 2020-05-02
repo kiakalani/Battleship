@@ -18,7 +18,7 @@ public class GameStage extends Group {
     /**
      * The scene for displaying the contents.
      */
-    private final Scene scene = new Scene(this,1024,768);
+    private final Scene scene = new Scene(this, 1024, 768);
     /**
      * The board that would keep track of the player's baord.
      */
@@ -38,6 +38,7 @@ public class GameStage extends Group {
 
     /**
      * Mouse position getter.
+     *
      * @return the x position of the mouse.
      */
     public static double getMouseX() {
@@ -46,6 +47,7 @@ public class GameStage extends Group {
 
     /**
      * Mouse position getter.
+     *
      * @return the y position of the mouse.
      */
     public static double getMouseY() {
@@ -56,8 +58,8 @@ public class GameStage extends Group {
      * The constructor.
      */
     public GameStage() {
-        board.relocate(90,90);
-        opponentBoard.relocate(500,90);
+        board.relocate(90, 90);
+        opponentBoard.relocate(500, 90);
         scene.setOnMouseMoved(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {

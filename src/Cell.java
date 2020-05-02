@@ -10,7 +10,7 @@ import javafx.scene.shape.Rectangle;
  * @version 1.00
  * @since 1.00
  */
-public class Cell  extends Rectangle {
+public class Cell extends Rectangle {
     /**
      * The <code>Color</code> of the cell.
      */
@@ -26,6 +26,7 @@ public class Cell  extends Rectangle {
 
     /**
      * Getter of the color of the board.
+     *
      * @return the color of the board.
      */
     public static Color getBoardColor() {
@@ -34,6 +35,7 @@ public class Cell  extends Rectangle {
 
     /**
      * The getter of the boolean indicating if there is a ship in this position.
+     *
      * @return the boolean indicator.
      */
     public boolean isShipLocated() {
@@ -42,6 +44,7 @@ public class Cell  extends Rectangle {
 
     /**
      * Setter of the ship located boolean
+     *
      * @param shipLocated is the new value for the given argument.
      */
     public void setShipLocated(boolean shipLocated) {

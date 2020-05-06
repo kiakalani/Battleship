@@ -19,6 +19,7 @@ public class Cell extends Rectangle {
      * A boolean indicating whether the ship is located in this cell.
      */
     private boolean shipLocated;
+    private boolean attacked;
     /**
      * The default size of the cells.
      */
@@ -58,5 +59,14 @@ public class Cell extends Rectangle {
         setFill(boardColor);
         setWidth(30);
         setHeight(30);
+        attacked = false;
+    }
+
+    public boolean isAttacked() {
+        return attacked;
+    }
+
+    public void setAttacked(boolean attacked) {
+        this.attacked = attacked;
     }
 }

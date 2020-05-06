@@ -136,6 +136,15 @@ public class GameStage extends Group {
                     if (playerShips.size() == 5) {
                         getChildren().removeAll(left, right, up, down, done, rotate);
                     }else {
+                        if (playerShips.getLast().getFace() == Ship.Face.VERTICAL) {
+                            for (int r = curRow;r<curRow+playerShips.getLast().getLength();r++) {
+                                board.getCell(r,curCol).setShipLocated(true);
+                            }
+                        } else {
+                            for (int c=curCol;c<curCol+playerShips.getLast().getLength();c++) {
+                                board.getCell(curRow,c).setShipLocated(true);
+                            }
+                        }
                         curRow = 0;
                         curCol = 0;
                         if (playerShips.size() < 3) {

@@ -137,8 +137,10 @@ public class AI {
         int col = save[1];
         int rowAdder = save[2];
         int colAdder = save[3];
-        playerBoard.getCell(row+rowAdder, col+colAdder).setAttacked(true);
-        if (!playerBoard.getCell(row+rowAdder,col+colAdder).isShipLocated()) {
+        if (!(row+rowAdder>9||col+colAdder>9||row+rowAdder<0||col+colAdder<0)) {
+            playerBoard.getCell(row + rowAdder, col + colAdder).setAttacked(true);
+        }
+        if (!playerBoard.getCell(row+rowAdder,col+colAdder).isShipLocated()||row+rowAdder>9||col+colAdder>9||row+rowAdder<0||col+colAdder<0) {
             stage = Stage.WONDER_FOR_SHIP;
         }
     }

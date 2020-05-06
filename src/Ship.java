@@ -1,6 +1,7 @@
 import javafx.animation.AnimationTimer;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
+import javafx.geometry.Bounds;
 import javafx.scene.Node;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseButton;
@@ -22,19 +23,11 @@ public class Ship {
      * The length of the ship.
      */
     private int length;
-    /**
-     * A boolean indicating whether the ship should follow the mouse or not.
-     */
-    private boolean shouldFollow;
-    /**
-     * <code>AnimationTimer</code> object for updating the position and orientation of the ship
-     */
-    private AnimationTimer updater;
 
     /**
      * An enum showing which way the ship is facing.
      */
-    private enum Face {
+    protected enum Face {
         HORIZONTAL, VERTICAL
     }
 
@@ -43,31 +36,23 @@ public class Ship {
      */
     private Face face;
 
+    public int getLength() {
+        return length;
+    }
+
     /**
      * The constructor.
      *
      * @param length   is the length of the ship.
      * @param children is the children of the parent class.
      */
-    public Ship(int length, ObservableList<Node> children) {
+    public Ship(int length, ObservableList<Node> children, double x, double y) {
         this(length);
-        ship.setFitWidth(35 * length);
-        shouldFollow = false;
+        ship.setFitWidth(34.5 * length);
+        System.out.println(x);
+        relocateShip(x, y);
         children.add(ship);
         face = Face.HORIZONTAL;
-        updater = new AnimationTimer() {
-            @Override
-            public void handle(long now) {
-                if (shouldFollow) {
-                    relocateAccordingly(GameStage.getMouseX(), GameStage.getMouseY());
-                }
-                if (face == Face.VERTICAL) {
-                    ship.setRotate(90);
-                } else ship.setRotate(0);
-            }
-        };
-        updater.start();
-        handle();
     }
 
     /**
@@ -99,32 +84,6 @@ public class Ship {
         this.length = length;
     }
 
-    /**
-     * The handling method for image movements.
-     */
-    private void handle() {
-        ship.setOnMousePressed(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
-                if (event.getButton() == MouseButton.PRIMARY) {
-                    shouldFollow = true;
-                } else shouldFollow = false;
-            }
-        });
-
-    }
-
-    /**
-     * This method relocates the ship to the center of the given x and y position.
-     *
-     * @param x is the x position.
-     * @param y is the y position.
-     */
-    private void relocateAccordingly(double x, double y) {
-        if (face == Face.VERTICAL) {
-            ship.relocate(x - (ship.getFitWidth() / 2), y);
-        } else ship.relocate(x - ship.getFitWidth() / 2, y - ship.getFitHeight() / 2);
-    }
 
     /**
      * This method relocates the ship to the exact given point.
@@ -134,16 +93,19 @@ public class Ship {
      */
     public void relocateShip(double x, double y) {
         ship.relocate(x, y);
+        if (face == Face.VERTICAL) {
+            if (length == 2) {
+                ship.relocate(x - 20, y + 20);
+            } else if (length == 3) {
+                ship.relocate(x-35,y+40);
+            } else if (length == 4) {
+                ship.relocate(x-57,y+57);
+            } else if (length == 5) {
+                ship.relocate(x-75,y+73);
+            }
+        }
     }
 
-    /**
-     * The getter of should follow boolean.
-     *
-     * @return shouldFollow boolean.
-     */
-    public boolean isShouldFollow() {
-        return shouldFollow;
-    }
 
     /**
      * This method rotates the ship.
@@ -151,6 +113,18 @@ public class Ship {
     public void rotate() {
         if (face == Face.HORIZONTAL) {
             face = Face.VERTICAL;
-        } else face = Face.HORIZONTAL;
+            ship.setRotate(90);
+        } else {
+            face = Face.HORIZONTAL;
+            ship.setRotate(0);
+        }
+    }
+
+    public boolean collides(Bounds objectBounds) {
+        return ship.getBoundsInParent().intersects(objectBounds);
+    }
+
+    public Bounds getBounds() {
+        return ship.getBoundsInParent();
     }
 }

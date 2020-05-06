@@ -48,4 +48,7 @@ public class Board extends GridPane {
         setVgap(5);
         setHgap(5);
     }
+    public Cell getCell(int r, int c) {
+        return cells[r][c];
+    }
 }
